@@ -16,6 +16,7 @@
 		089147AC2377AF6000171B52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 089147AA2377AF6000171B52 /* LaunchScreen.storyboard */; };
 		089147B72377AF6100171B52 /* testPopUpViewForPadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089147B62377AF6100171B52 /* testPopUpViewForPadTests.swift */; };
 		089147C22377AF6100171B52 /* testPopUpViewForPadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089147C12377AF6100171B52 /* testPopUpViewForPadUITests.swift */; };
+		089147D02377F56900171B52 /* PopoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089147CF2377F56900171B52 /* PopoverTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		089147BD2377AF6100171B52 /* testPopUpViewForPadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testPopUpViewForPadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		089147C12377AF6100171B52 /* testPopUpViewForPadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testPopUpViewForPadUITests.swift; sourceTree = "<group>"; };
 		089147C32377AF6100171B52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		089147CF2377F56900171B52 /* PopoverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				0891479F2377AF5E00171B52 /* SceneDelegate.swift */,
 				089147A12377AF5E00171B52 /* MasterViewController.swift */,
 				089147A32377AF5E00171B52 /* DetailViewController.swift */,
+				089147CF2377F56900171B52 /* PopoverTableViewController.swift */,
 				089147A52377AF5E00171B52 /* Main.storyboard */,
 				089147A82377AF6000171B52 /* Assets.xcassets */,
 				089147AA2377AF6000171B52 /* LaunchScreen.storyboard */,
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0891479E2377AF5E00171B52 /* AppDelegate.swift in Sources */,
+				089147D02377F56900171B52 /* PopoverTableViewController.swift in Sources */,
 				089147A02377AF5E00171B52 /* SceneDelegate.swift in Sources */,
 				089147A22377AF5E00171B52 /* MasterViewController.swift in Sources */,
 				089147A42377AF5E00171B52 /* DetailViewController.swift in Sources */,
@@ -441,6 +445,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5PL9PF8X4M;
 				INFOPLIST_FILE = testPopUpViewForPad/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,6 +464,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5PL9PF8X4M;
 				INFOPLIST_FILE = testPopUpViewForPad/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
