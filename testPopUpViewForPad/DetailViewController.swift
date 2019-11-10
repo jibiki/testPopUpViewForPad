@@ -10,6 +10,14 @@ import UIKit
 
 class DetailViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
+    var selectedRows = Set<Int>()
+    
+    let items: [String] = [
+        "AAA",
+        "BBB",
+        "CCC",
+    ]
+    
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
     @IBOutlet var button: UIButton!
@@ -51,24 +59,37 @@ class DetailViewController: UIViewController, UIPopoverPresentationControllerDel
 
     func openPopoverView(sourceView: UIView) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let contentVC = storyboard.instantiateViewController(withIdentifier: "PopoverNavigationController")
+        let popoverNavigationController = storyboard.instantiateViewController(withIdentifier: "PopoverNavigationController") as! PopoverNavigationController
         
         // スタイルの指定
-        contentVC.modalPresentationStyle = .popover
+        popoverNavigationController.modalPresentationStyle = .popover
         // サイズの指定
-        contentVC.preferredContentSize = CGSize(width: 300, height: 300)
+        popoverNavigationController.preferredContentSize = CGSize(width: 300, height: 300)
         // 表示するViewの指定
-        contentVC.popoverPresentationController?.sourceView = self.view
+        popoverNavigationController.popoverPresentationController?.sourceView = self.view
         // ピヨッと表示する位置の指定
-        contentVC.popoverPresentationController?.sourceRect = sourceView.frame
+        popoverNavigationController.popoverPresentationController?.sourceRect = sourceView.frame
         // 矢印が出る方向の指定
-        contentVC.popoverPresentationController?.permittedArrowDirections = [.up]
+        popoverNavigationController.popoverPresentationController?.permittedArrowDirections = [.up]
         // デリゲートの設定
 //        contentVC.popoverPresentationController?.delegate = self
         
+        popoverNavigationController.items = self.items
+        popoverNavigationController.selectedRows = self.selectedRows
         
+        popoverNavigationController.completion = { [weak self] selectedRows in
+            guard let weakSelf = self else {
+                return
+            }
+            
+            weakSelf.selectedRows = selectedRows
+            
+            let title = selectedRows.isEmpty ? "Empty" : selectedRows.sorted().map { weakSelf.items[$0] }.joined(separator: ", ")
+            
+            weakSelf.button.setTitle(title, for: .normal)
+        }
         //表示
-        present(contentVC, animated: true, completion: nil)
+        present(popoverNavigationController, animated: true, completion: nil)
 
     }
 }

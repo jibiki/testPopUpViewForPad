@@ -10,15 +10,17 @@ import UIKit
 
 class PopoverTableViewController: UITableViewController {
 
-    let data = ["A", "B", "C"]
+    var data = [String]()
     
-    var selectedRow = Set<Int>()
+    var selectedRows = Set<Int>()
     
     @IBAction func cancelButtonDidTap(_ sender: UIBarButtonItem) {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func doneButtonDidTap(_ sender: Any) {
+        let popoverNavigationController = self.navigationController as! PopoverNavigationController
+        popoverNavigationController.completion?(self.selectedRows)
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
@@ -26,12 +28,10 @@ class PopoverTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = "カテゴリ"
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        let popoverNavigationController = self.navigationController as! PopoverNavigationController
+        self.data = popoverNavigationController.items
+        self.selectedRows = popoverNavigationController.selectedRows
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -50,17 +50,17 @@ class PopoverTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         cell.textLabel?.text = self.data[indexPath.row]
-        cell.accessoryType = self.selectedRow.contains(indexPath.row) ? .checkmark : .none
+        cell.accessoryType = self.selectedRows.contains(indexPath.row) ? .checkmark : .none
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        if self.selectedRow.contains(row) {
-            self.selectedRow.remove(row)
+        if self.selectedRows.contains(row) {
+            self.selectedRows.remove(row)
         } else {
-            self.selectedRow.insert(row)
+            self.selectedRows.insert(row)
         }
         self.tableView.reloadRows(at: [indexPath], with: .automatic)
     }
