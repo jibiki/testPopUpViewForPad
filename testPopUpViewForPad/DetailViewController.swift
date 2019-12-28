@@ -92,5 +92,19 @@ class DetailViewController: UIViewController, UIPopoverPresentationControllerDel
         present(popoverNavigationController, animated: true, completion: nil)
 
     }
+    
+    private func updateFont() {
+        self.button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+    }
 }
 
+
+extension DetailViewController {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if previousTraitCollection?.preferredContentSizeCategory != self.traitCollection.preferredContentSizeCategory {
+            self.updateFont()
+        }
+    }
+}
